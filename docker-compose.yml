@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  static-server:
+    build: .
+    ports:
+      - "80:80"   # HTTP
+      - "22:22"   # SSH
+    volumes:
+      - ./static:/path/to/images  # Монтируем локальную директорию для статики
+    networks:
+      - static-net
+
+networks:
+  static-net:
+    driver: bridge
+

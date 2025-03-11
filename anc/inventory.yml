@@ -1,0 +1,17 @@
+all:
+  vars:
+    ansible_user: root  # Подключаемся под root
+    become: true  # Используем права root для всех задач
+    become_method: sudo
+    ansible_python_interpreter: "/usr/bin/python3"  # Указываем интерпретатор Python
+    ansible_ssh_extra_args: "-o StrictHostKeyChecking=no"  # Убираем предупреждения о ключах
+
+  children:
+    static_server:
+      hosts:
+        localhost:
+          ansible_host: localhost
+          ansible_connection: ssh  # Используем ssh для подключения
+          ansible_port: 22  # Указываем порт SSH (по умолчанию 22)
+          ansible_ssh_private_key_file: "~/.ssh/id_rsa"  # Путь к приватному ключу (если нужно)
+

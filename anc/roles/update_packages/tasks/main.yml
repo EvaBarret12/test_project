@@ -1,0 +1,21 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Upgrade all packages
+  apt:
+    upgrade: dist
+    autoclean: yes
+    autoremove: yes
+
+- name: Install additional utilities
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - htop
+    - ncdu
+    - git
+    - nano
+

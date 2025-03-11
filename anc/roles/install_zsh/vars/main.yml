@@ -1,0 +1,13 @@
+# Эта переменная определяет, каких пользователей мы будем настраивать с оболочкой zsh
+users:
+  - name: "user1"
+    shell: "/bin/bash"
+    state: "present"
+    groups: ["sudo"]
+    ssh_key: "ssh-rsa AAAAB3..."
+  - name: "user2"
+    shell: "/bin/zsh"
+    state: "present"
+    groups: ["sudo"]
+    ssh_key: "ssh-rsa BBBBB..."
+

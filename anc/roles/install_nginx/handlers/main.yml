@@ -1,0 +1,5 @@
+---
+- name: reload nginx
+  command: nginx -s reload  # Перезапуск nginx через сигнал
+  become: yes  # Убедимся, что команда выполняется с правами root
+

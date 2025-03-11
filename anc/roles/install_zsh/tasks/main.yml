@@ -1,0 +1,15 @@
+---
+- name: Install ZSH
+  apt:
+    name: zsh
+    state: present
+
+- name: Install Oh My Zsh for users with zsh shell
+  become: yes
+  shell: |
+    if [[ ! -d "/home/{{ item }}/.oh-my-zsh" ]]; then
+      curl -Lo install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+      sh install.sh --unattended
+    fi
+  with_items: "{{ users | selectattr('shell', 'equalto', '/bin/zsh') | map(attribute='name') | list }}"
+

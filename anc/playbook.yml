@@ -1,0 +1,16 @@
+---
+- name: Configure static server
+  hosts: static_server
+  gather_facts: no
+  become: yes
+  vars_files:
+    - vars/main.yml
+
+  roles:
+    - create_users  # Роль для создания пользователей (если она нужна)
+    - install_zsh
+    - configure_ssh  # Только если нужно настроить SSH, но не добавлять ключи
+    - update_packages
+    - install_nginx
+    - upload_static  # Роль для заливки статики
+

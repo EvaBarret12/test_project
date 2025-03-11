@@ -1,0 +1,23 @@
+---
+- name: Install nginx
+  apt:
+    name: nginx
+    state: present
+  notify:
+    - reload nginx  # Уведомляем обработчик, чтобы перезапустить nginx
+
+- name: Configure Nginx default site for static files
+  template:
+    src: default  # Конфигурация для default
+    dest: /etc/nginx/sites-available/default  # Путь, куда копируем конфигурацию
+  notify:
+    - reload nginx  # Уведомляем обработчик, чтобы перезапустить nginx
+
+- name: Enable default site
+  file:
+    src: /etc/nginx/sites-available/default
+    dest: /etc/nginx/sites-enabled/default  # Создаем символическую ссылку
+    state: link
+  notify:
+    - reload nginx  # Уведомляем обработчик, чтобы перезапустить nginx
+

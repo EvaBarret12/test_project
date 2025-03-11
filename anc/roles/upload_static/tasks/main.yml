@@ -1,0 +1,10 @@
+---
+- name: Upload static files to the server
+  copy:
+    src: ../../my_ansyble/static/  # Путь к картинкам в проекте
+    dest: /path/to/images/         # Путь назначения на сервере
+    owner: www-data
+    group: www-data
+    mode: '0644'
+    recurse: yes
+

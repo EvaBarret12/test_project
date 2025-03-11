@@ -1,0 +1,11 @@
+---
+- name: Ensure user is present
+  user:
+    name: "{{ item.name }}"
+    shell: "{{ item.shell }}"
+    state: "{{ item.state }}"
+    groups: "{{ item.groups }}"
+    password: "{{ item.password | default(omit) }}"
+  with_items: "{{ users }}"
+  become: yes  # Убедимся, что команда выполняется от root
+

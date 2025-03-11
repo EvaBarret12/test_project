@@ -1,0 +1,16 @@
+server {
+    listen 80;
+    server_name localhost;
+
+    location /images/ {
+        root /var/www;
+        autoindex on;
+        expires 1h;
+        try_files $uri $uri/ =404;
+    }
+
+    # Прочие настройки
+    gzip on;
+    gzip_types text/css application/javascript image/jpeg image/png;
+}
+
