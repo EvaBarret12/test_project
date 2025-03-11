@@ -1,0 +1,8 @@
+anc/
+docker-compose.yml
+Dockerfile
+*.pyc
+__pycache__
+*.log
+*.md
+*.swp
